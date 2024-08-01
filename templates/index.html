@@ -17,62 +17,15 @@
         <ul>
             {% for todo in todos %}
             <li>
-                <span class="task-content" onclick="showModal('{{ todo }}')">{{ todo }}</span>
+                <span class="task-content">{{ todo }}</span>
                 <div class="action-buttons">
-                    <button onclick="markDone(this)"><i class="fas fa-check"></i></button>
-                    <button onclick="editTask(this, '{{ todo }}')"><i class="fas fa-edit"></i></button>
-                    <button onclick="deleteTask('{{ todo }}')"><i class="fas fa-trash"></i></button>
+                    <button><i class="fas fa-check"></i></button>
+                    <button><i class="fas fa-edit"></i></button>
+                    <button><i class="fas fa-trash"></i></button>
                 </div>
             </li>
             {% endfor %}
         </ul>
     </div>
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <p id="modal-text">Some text in the Modal..</p>
-        </div>
-    </div>
-
-    <script>
-        function showModal(task) {
-            const modal = document.getElementById('myModal');
-            const modalText = document.getElementById('modal-text');
-            modalText.textContent = task;
-            modal.style.display = "block";
-        }
-        
-        function closeModal() {
-            const modal = document.getElementById('myModal');
-            modal.style.display = "none";
-        }
-        
-        function markDone(button) {
-            const taskItem = button.closest('li');
-            taskItem.classList.toggle('completed');
-        }
-        
-        function editTask(button, originalText) {
-            const taskItem = button.closest('li');
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.value = originalText;
-            taskItem.innerHTML = '';
-            taskItem.appendChild(input);
-            input.focus();
-            input.onblur = function() {
-                taskItem.innerHTML = '<span class="task-content" onclick="showModal(\''+ input.value +'\')">' + input.value + '</span>';
-                taskItem.appendChild(button.parentNode);
-            };
-        }
-        
-        function deleteTask(task) {
-            // You'd need to integrate this properly with your server-side to handle deletion
-            alert('Delete function needs server-side integration');
-        }
-        
-    </script>
 </body>
 </html> 
