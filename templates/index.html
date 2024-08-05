@@ -15,6 +15,11 @@
                 {% for todo in todos %}
                 <li>
                     <span class="task-content">{{ todo }}</span>
+                    <div class="action-buttons">
+                        <a>✅</a>
+                        <a>✏️</a>
+                        <a>❌</a>
+                    </div>
                 </li>
                 {% endfor %}
             </ul>
