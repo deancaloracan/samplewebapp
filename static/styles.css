@@ -75,18 +75,28 @@ li {
 
 .action-buttons {
     display: flex;
-    gap: 8px; /* Provides sufficient spacing between buttons */
+    justify-content: space-around; /* Adjusts spacing */
+    align-items: center; /* Centers items vertically */
 }
 
-.action-buttons button {
-    background: none; /* No background for icon buttons */
-    color: #666; /* Standard color for icons */
+.action-buttons button,
+.action-buttons a {
+    background: none;
+    border: none;
+    padding: 5px;
     cursor: pointer;
-    padding: 0;
-    width: 40px; /* Fixed width for icon consistency */
-    height: 40px; /* Fixed height to maintain alignment */
 }
+
+.action-buttons i {
+    font-size: 16px; /* Ensures icons are the same size */
+}
+
 
 .fa-trash { color: red; }
 .fa-edit { color: orange; }
 .fa-check { color: green; }
+
+.done .task-content {
+    text-decoration: line-through;
+    color: #bbb;
+}

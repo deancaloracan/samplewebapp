@@ -16,16 +16,16 @@
         </form>
         <ul>
             {% for todo in todos %}
-            <li>
-                <span class="task-content">{{ todo }}</span>
+            <li class="{{ 'done' if todo.done else '' }}">
+                <span class="task-content">{{ todo.content }}</span>
                 <div class="action-buttons">
-                    <button><i class="fas fa-check"></i></button>
+                    <a href="{{ url_for('toggle_status', task_id=todo.id) }}"><i class="fas fa-check" style="{{ 'color:green;' if todo.done else '' }}"></i></a>
                     <button><i class="fas fa-edit"></i></button>
-                    <button><i class="fas fa-trash"></i></button>
+                    <a href="{{ url_for('remove_task', task_id=todo.id) }}"><i class="fas fa-trash"></i></a>
                 </div>
             </li>
             {% endfor %}
         </ul>
     </div>
 </body>
-</html> 
+</html>
