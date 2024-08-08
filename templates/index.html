@@ -20,7 +20,7 @@
                 <span class="task-content">{{ todo.content }}</span>
                 <div class="action-buttons">
                     <a href="{{ url_for('toggle_status', task_id=todo.id) }}"><i class="fas fa-check" style="{{ 'color:green;' if todo.done else '' }}"></i></a>
-                    <button><i class="fas fa-edit"></i></button>
+                    <a href="{{ url_for('edit_task', task_id=todo.id) }}"><i class="fas fa-edit"></i></a>
                     <a href="{{ url_for('remove_task', task_id=todo.id) }}"><i class="fas fa-trash"></i></a>
                 </div>
             </li>

@@ -21,6 +21,16 @@ def index():
         return redirect(url_for('index'))
     return render_template('index.html', todos=tasks)
 
+@app.route('/edit/<int:task_id>', methods=['GET', 'POST'])
+def edit_task(task_id):
+    task = next((task for task in tasks if task['id'] == task_id), None)
+    if request.method == 'POST':
+        task_content = request.form['edited_todo']
+        if task and task_content:
+            task['content'] = task_content
+        return redirect(url_for('index'))
+    return render_template('edit_task.html', task=task)
+
 @app.route('/remove/<int:task_id>')
 def remove_task(task_id):
     global tasks
