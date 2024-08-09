@@ -62,3 +62,12 @@ li {
     max-width: 70%;
     cursor: pointer;
 }
+
+.done .task-content {
+    text-decoration: line-through;
+    color: #bbb;
+}
+
+a {
+    text-decoration: none;
+}
