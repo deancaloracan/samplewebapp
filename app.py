@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import inspect
-from dotenv import load_dotenv
+from dotenv import load_dotenv # TO LOAD VARIABLES FROM ENV FILES
 import os
 
 # Load environment variables from .env file
-load_dotenv()
+load_dotenv() # LOADED DATABASE_URL
 
 app = Flask(__name__) # Initialize Flask
 
@@ -23,11 +22,11 @@ db = SQLAlchemy(app)  # Sets up SQLAlchemy with the Flask app for database inter
 #          {"id": 1, "task_description": "Read a book", "done": False},
 #          {"id": 2, "task_description": "Study Flask", "done": False}]
 
-# Define the Todo model
+# Define the Todo model Models are just dataset structure
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    task_description = db.Column(db.String(255), nullable=False)
-    done = db.Column(db.Boolean, default=False)
+    task_description = db.Column(db.String(255), nullable=False) # nullable just means pwedeng walang laman
+    done = db.Column(db.Boolean, default=False) #default value
 
 # @app.route('/', methods=['GET', 'POST'])
 # def index():
@@ -56,7 +55,7 @@ def index():
 # def toggle_status(todo_id):
 #     for todo in todos:
 #         if todo['id'] == todo_id:
-#             todo['done'] = not todo['done']
+#             todo['done'] = not todo['done'] # reverse of current status
 #             break
 #     return redirect(url_for('index'))
 
@@ -105,5 +104,6 @@ def edit_task(todo_id):
         
 
 if __name__ == '__main__': # Define port, host, and debugging while running
-    db.create_all()  # Create database tables if they don't exist
-    app.run(debug=True)
+    with app.app_context():  # Add this line to provide an application context
+        db.create_all()  # Create database tables if they don't exist
+    app.run(host='0.0.0.0', port=5000)
